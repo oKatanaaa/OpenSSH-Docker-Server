@@ -1,0 +1,11 @@
+version: "2.1"
+services:
+  pytorch-openssh-server:
+    build: .
+    container_name: pytorch-openssh-server
+    volumes:
+      - your_working_folder:/workspace
+      - /mnt:/mnt
+    ports:
+      # - 51248:22 # Windows port : SSH port
+      - 51125:22 # Linux port : SSH port
