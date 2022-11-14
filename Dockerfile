@@ -7,11 +7,12 @@ RUN apt-get update && \
     apt-get install -y git && \
     apt-get install -y libsm6 libxext6 libxrender-dev openssh-server net-tools libglvnd-dev
 
-# Setup SSH
+# Setup SSH:
+# Set your password in line 15.
 EXPOSE 22
 RUN mkdir /root/.ssh
 RUN mkdir /var/run/sshd
-RUN echo 'root:root' | chpasswd
+RUN echo 'root:your_password' | chpasswd
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
