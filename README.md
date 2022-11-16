@@ -10,9 +10,9 @@ On your remote server do the following:
 2. Run `cd OpenSSH-Docker-Server`
 3. Set the password in `Dockerfile` (line 15). In this example a pytorch docker is being set, 
 but you can customize the image to suit your needs (pick a different base image, install other packages, etc).
-3. Run `./build.sh`
+3. Run `bash build.sh`
 4. Set the port and your working directory in run.sh (line 4 and 5).
-5. Run `./run.sh`
+5. Run `bash run.sh`
 
 
 ## Connecting
