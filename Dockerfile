@@ -1,4 +1,5 @@
-FROM pytorch/pytorch:latest
+# Use a concrete tag instead of latest!
+FROM pytorch/pytorch:latest 
 
 WORKDIR /workspace
 
@@ -8,10 +9,11 @@ RUN apt-get update && \
     apt-get install -y libsm6 libxext6 libxrender-dev openssh-server net-tools libglvnd-dev
 
 # Setup SSH:
-# Set your password in line 15.
+# Set your password in line 17.
 EXPOSE 22
-RUN mkdir /root/.ssh
-RUN mkdir /var/run/sshd
+# Added -p parameter in case the folders already exist. Otherwise building from Ubuntu image fails.
+RUN mkdir -p /root/.ssh
+RUN mkdir -p /var/run/sshd
 RUN echo 'root:your_password' | chpasswd
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
